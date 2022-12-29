@@ -1,4 +1,4 @@
-Ethers ABI Converter
+Ethers.js Utility HTTP Wrapper
 ===
 
-A simple deno utility to convert abi formats via HTTP. Based on ethers.js
+A simple deno http wrapper for ethers.js utilities.
