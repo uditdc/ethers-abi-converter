@@ -18,7 +18,7 @@ const jsonToHumanReadable = (data: ethers.utils.Fragment[]) => {
 const router = new Router()
 router
   .get("/", (context) => {
-    context.response.body = "Hello world!"
+    context.response.body = "Ethers ABI Converter."
   })
   .post("/to-json", async (context) => {
     const body = await context.request.body().value
