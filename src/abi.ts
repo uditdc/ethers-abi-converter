@@ -32,9 +32,21 @@ abiRouter
       abi: jsonToHumanReadable(body.abi),
     };
   })
-  .post("/encode", (context) => {
-    context.response.body = "Encode ...";
-  })
-  .post("/decode", (context) => {
-    context.response.body = "Decode ...";
+  .post("/encode-function-data", async (context) => {
+    try {
+      const body = await context.request.body().value
+      const { abi, method, args } = body 
+  
+      const contract = new ethers.utils.Interface(abi)
+      const data = contract.encodeFunctionData(method, args)
+  
+      context.response.body = {
+        data
+      }
+    } catch (error) {
+      context.response.status = 400
+      context.response.body = {
+        message: 'Error: ' + 'Failed to encode function data (' + error.message + ')'
+      }
+    }
   });
